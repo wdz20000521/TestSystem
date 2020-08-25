@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val ifFirstStart = getSharedPreferences("AppSettings", Context.MODE_PRIVATE).getBoolean("firstStart", false)
-        if (ifFirstStart) {
+        val ifNotFirstStart = getSharedPreferences("AppSettings", Context.MODE_PRIVATE).getBoolean("notFirstStart", false)
+        if (ifNotFirstStart) {
             val intent = Intent(this, TopActivity::class.java)
             startActivity(intent)
             finish()
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     Thread.sleep(10)
                 }
                 getSharedPreferences("AppSettings", Context.MODE_PRIVATE).edit {
-                    putBoolean("firstStart", true)
+                    putBoolean("notFirstStart", true)
                     putInt("paperSingleChoiceNum", 20)
                     putInt("paperMutibleChoiceNum", 5)
                     putInt("paperJudgeNum", 20)
